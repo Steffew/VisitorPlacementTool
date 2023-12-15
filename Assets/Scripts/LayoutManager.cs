@@ -39,7 +39,7 @@ public class LayoutManager : MonoBehaviour
     public void GenerateSections(int amount)
     {
         Transform transform = gameObject.transform;
-        Vector3 newPosition = transform.position;
+        Vector3 newSectionPosition = transform.position;
 
         for (int i = 0; i < amount; i++)
         {
@@ -51,13 +51,21 @@ public class LayoutManager : MonoBehaviour
 
         foreach (Section section in sections)
         {
-            GameObject newSection = Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
+            GameObject newSection = Instantiate(sectionPrefab, newSectionPosition, Quaternion.identity, transform);
             SectionUI sectionUI = newSection.GetComponent<SectionUI>();
             sectionUI.SetSection(section);
 
-            GameObject newSeat = Instantiate(seatPrefab, newPosition, Quaternion.identity, newSection.transform);
+            for (int c = 0; c < section.Columns; c++)
+            {
+                newSectionPosition.x += 0.5f;
 
-            newPosition.x += section.Columns * 0.5f;
+                for (int r = 0; r < section.Rows; r++)
+                {
+                    GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
+                }
+            }
+
+            newSectionPosition.x += 1;
         }
     }
 }
