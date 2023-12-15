@@ -6,6 +6,12 @@ public class SectionManager : MonoBehaviour
 {
     private List<Section> sections = new List<Section>();
 
+    [Header("Prefabs")]
+    [SerializeField] private GameObject sectionPrefab;
+
+    [SerializeField] private GameObject seatPrefab;
+
+    [Header("General Settings")]
     [SerializeField]
     [Range(1, 3)]
     private int sectionCount = 5;
