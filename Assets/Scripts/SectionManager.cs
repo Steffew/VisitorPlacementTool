@@ -52,9 +52,11 @@ public class SectionManager : MonoBehaviour
 
         foreach (Section section in sections)
         {
-            GameObject instantiatedObject = Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
-            SectionUI sectionUI = instantiatedObject.GetComponent<SectionUI>();
+            GameObject newSection = Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
+            SectionUI sectionUI = newSection.GetComponent<SectionUI>();
             sectionUI.SetSection(section);
+
+            GameObject newSeat = Instantiate(seatPrefab, newPosition, Quaternion.identity, newSection.transform);
 
             newPosition.x += section.Columns * 0.5f;
         }
