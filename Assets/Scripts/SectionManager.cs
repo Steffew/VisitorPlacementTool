@@ -33,9 +33,11 @@ public class SectionManager : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            Section section = new Section(i);
+            int rows = Random.Range(minRows, maxRows);
+            int columns = Random.Range(minColumns, maxColumns);
+            Section section = new Section(i, rows, columns);
             sections.Add(section);
-            Debug.LogWarning($"Section {i} created.");
+            Debug.LogWarning($"Section {i} (Rows: {rows} / Columns: {columns}) created.");
         }
 
         foreach (Section section in sections)
