@@ -47,7 +47,6 @@ public class LayoutManager : MonoBehaviour
             int columns = Random.Range(minColumns, maxColumns);
             Section section = new Section(i + 1, rows, columns);
             sections.Add(section);
-            Debug.LogWarning($"Section {i} (Rows: {rows} / Columns: {columns}) created.");
         }
 
         foreach (Section section in sections)
