@@ -45,14 +45,17 @@ public class SectionManager : MonoBehaviour
         {
             int rows = Random.Range(minRows, maxRows);
             int columns = Random.Range(minColumns, maxColumns);
-            Section section = new Section(i, rows, columns);
+            Section section = new Section(i + 1, rows, columns);
             sections.Add(section);
             Debug.LogWarning($"Section {i} (Rows: {rows} / Columns: {columns}) created.");
         }
 
         foreach (Section section in sections)
         {
-            Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
+            GameObject instantiatedObject = Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
+            SectionUI sectionUI = instantiatedObject.GetComponent<SectionUI>();
+            sectionUI.SetSection(section);
+
             newPosition.x += section.Columns * 0.5f;
         }
     }
