@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class SectionManager : MonoBehaviour
+public class LayoutManager : MonoBehaviour
 {
     private List<Section> sections = new List<Section>();
 

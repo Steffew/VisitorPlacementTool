@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 1791607952}
   - component: {fileID: 1791607951}
   m_Layer: 0
-  m_Name: SectionManager
+  m_Name: EventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1340,7 +1340,7 @@ MonoBehaviour:
   sectionCount: 5
   minRows: 1
   maxRows: 5
-  minColumns: 3
+  minColumns: 10
   maxColumns: 10
 --- !u!4 &1791607952
 Transform:
