@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class SectionManager : MonoBehaviour
@@ -13,20 +14,20 @@ public class SectionManager : MonoBehaviour
 
     [Header("General Settings")]
     [SerializeField]
-    [Range(1, 3)]
-    private int sectionCount = 5;
+    [Range(1, 5)]
+    private int sectionCount;
 
     [Header("Section Row Settings")]
-    [SerializeField, Range(1, 5)] private int minRows;
+    [SerializeField, Range(1, 10)] private int minRows;
 
-    [SerializeField, Range(1, 5)] private int maxRows;
+    [SerializeField, Range(1, 10)] private int maxRows;
 
     [Header("Section Column Settings")]
-    [SerializeField, Range(1, 5)] private int minColumns;
+    [SerializeField, Range(1, 10)] private int minColumns;
 
-    [SerializeField, Range(1, 5)] private int maxColumns;
+    [SerializeField, Range(1, 10)] private int maxColumns;
 
-    private void Start()
+    private void Awake()
     {
         GenerateSections(sectionCount);
     }
@@ -37,6 +38,9 @@ public class SectionManager : MonoBehaviour
 
     public void GenerateSections(int amount)
     {
+        Transform transform = gameObject.transform;
+        Vector3 newPosition = transform.position;
+
         for (int i = 0; i < amount; i++)
         {
             int rows = Random.Range(minRows, maxRows);
@@ -48,6 +52,8 @@ public class SectionManager : MonoBehaviour
 
         foreach (Section section in sections)
         {
+            Instantiate(sectionPrefab, newPosition, Quaternion.identity, transform);
+            newPosition.x += section.Columns * 0.5f;
         }
     }
 }
