@@ -13,6 +13,6 @@ public class SectionUI : MonoBehaviour
     {
         this.section = section;
         sectionIdText.text = section.Id.ToString();
-        sectionDimensionsText.text = $"{section.Rows}x{section.Columns}";
+        sectionDimensionsText.text = $"{section.Columns}x{section.Rows}";
     }
 }
