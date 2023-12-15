@@ -1337,11 +1337,11 @@ MonoBehaviour:
     type: 3}
   seatPrefab: {fileID: 7510899322337187683, guid: 52e26a2f9e0234c43a17fe6822831e7b,
     type: 3}
-  sectionCount: 1
+  sectionCount: 5
   minRows: 1
   maxRows: 5
-  minColumns: 1
-  maxColumns: 5
+  minColumns: 3
+  maxColumns: 10
 --- !u!4 &1791607952
 Transform:
   m_ObjectHideFlags: 0
