@@ -68,4 +68,13 @@ public class LayoutManager : MonoBehaviour
             newSectionPosition.x += 1;
         }
     }
+
+    public void SetLayoutParameters(int sectionCount, int minColumns, int maxColumns, int minRows, int maxRows)
+    {
+        this.sectionCount = sectionCount;
+        this.minColumns = minColumns;
+        this.maxColumns = maxColumns;
+        this.minRows = minRows;
+        this.maxRows = maxRows;
+    }
 }
