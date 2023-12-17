@@ -17,15 +17,15 @@ public class LayoutManager : MonoBehaviour
     [Range(1, 5)]
     private int sectionCount;
 
-    [Header("Section Row Settings")]
-    [SerializeField, Range(1, 10)] private int minRows;
-
-    [SerializeField, Range(1, 10)] private int maxRows;
-
     [Header("Section Column Settings")]
     [SerializeField, Range(1, 10)] private int minColumns;
 
     [SerializeField, Range(1, 10)] private int maxColumns;
+
+    [Header("Section Row Settings")]
+    [SerializeField, Range(1, 10)] private int minRows;
+
+    [SerializeField, Range(1, 10)] private int maxRows;
 
     private void Awake()
     {
