@@ -33,4 +33,19 @@ public class DropdownManager : MonoBehaviour
                 break;
         }
     }
+
+    public void SetRandomizeRotation(int index)
+    {
+        Debug.Log($"Selected layout: {index}");
+        switch (index)
+        {
+            case 0: // Enabled
+                layoutManager.SetRandomizeRotation(true);
+                break;
+
+            case 1: // Disabled
+                layoutManager.SetRandomizeRotation(false);
+                break;
+        }
+    }
 }
