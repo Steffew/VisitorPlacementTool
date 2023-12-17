@@ -27,13 +27,10 @@ public class LayoutManager : MonoBehaviour
 
     [SerializeField, Range(1, 10)] private int maxRows;
 
-    private void Awake()
-    {
-    }
+    [Header("Miscellaneous")]
+    [SerializeField] private bool randomizeRotation;
 
-    private void Update()
-    {
-    }
+    [SerializeField] private bool showSections;
 
     public void GenerateSections()
     {
@@ -61,6 +58,11 @@ public class LayoutManager : MonoBehaviour
                 for (int r = 0; r < section.Rows; r++)
                 {
                     GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
+                    if (randomizeRotation)
+                    {
+                        float randomYRotation = Random.Range(-10f, 10f);
+                        rowSeat.transform.Rotate(0, randomYRotation, 0);
+                    }
                 }
             }
 
@@ -85,5 +87,10 @@ public class LayoutManager : MonoBehaviour
         this.maxColumns = maxColumns;
         this.minRows = minRows;
         this.maxRows = maxRows;
+    }
+
+    public void SetRandomizeRotation(bool randomizeRotation)
+    {
+        this.randomizeRotation = randomizeRotation;
     }
 }
