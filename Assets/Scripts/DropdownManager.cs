@@ -9,7 +9,6 @@ public class DropdownManager : MonoBehaviour
 
     public void SetLayoutValues(int index)
     {
-        Debug.Log($"Selected layout: {index}");
         switch (index)
         {
             case 0: // Tiny
@@ -36,7 +35,6 @@ public class DropdownManager : MonoBehaviour
 
     public void SetRandomizeRotation(int index)
     {
-        Debug.Log($"Selected layout: {index}");
         switch (index)
         {
             case 0: // Enabled
