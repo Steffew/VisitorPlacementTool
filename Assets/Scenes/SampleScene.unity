@@ -2120,6 +2120,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelItem
       objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 762286684}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetRandomizeRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DropdownManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885725289985652534, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3740,6 +3780,8 @@ MonoBehaviour:
   maxColumns: 6
   minRows: 3
   maxRows: 5
+  randomizeRotation: 1
+  showSections: 0
 --- !u!4 &1791607952
 Transform:
   m_ObjectHideFlags: 0
