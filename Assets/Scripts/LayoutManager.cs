@@ -30,8 +30,6 @@ public class LayoutManager : MonoBehaviour
     [Header("Miscellaneous")]
     [SerializeField] private bool randomizeRotation;
 
-    [SerializeField] private bool showSections;
-
     public void GenerateSections()
     {
         Transform transform = gameObject.transform;
@@ -58,6 +56,7 @@ public class LayoutManager : MonoBehaviour
                 for (int r = 0; r < section.Rows; r++)
                 {
                     GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
+
                     if (randomizeRotation)
                     {
                         float randomYRotation = Random.Range(-10f, 10f);
