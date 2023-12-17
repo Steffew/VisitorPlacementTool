@@ -17,15 +17,15 @@ public class DropdownManager : MonoBehaviour
                 break;
 
             case 1: // Small
-                layoutManager.SetLayoutParameters(1, 2, 4, 2, 4);
+                layoutManager.SetLayoutParameters(2, 2, 4, 2, 4);
                 break;
 
             case 2: // Medium
-                layoutManager.SetLayoutParameters(2, 3, 5, 3, 6);
+                layoutManager.SetLayoutParameters(3, 3, 5, 3, 6);
                 break;
 
             case 3: // Large
-                layoutManager.SetLayoutParameters(3, 3, 6, 4, 7);
+                layoutManager.SetLayoutParameters(3, 5, 8, 6, 8);
                 break;
 
             case 4: // Extreme
