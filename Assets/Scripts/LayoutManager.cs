@@ -29,19 +29,18 @@ public class LayoutManager : MonoBehaviour
 
     private void Awake()
     {
-        GenerateSections(sectionCount);
     }
 
     private void Update()
     {
     }
 
-    public void GenerateSections(int amount)
+    public void GenerateSections()
     {
         Transform transform = gameObject.transform;
         Vector3 newSectionPosition = transform.position;
 
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < sectionCount; i++)
         {
             int rows = Random.Range(minRows, maxRows);
             int columns = Random.Range(minColumns, maxColumns);
@@ -67,6 +66,16 @@ public class LayoutManager : MonoBehaviour
 
             newSectionPosition.x += 1;
         }
+    }
+
+    public void ClearLayout()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        sections.Clear();
     }
 
     public void SetLayoutParameters(int sectionCount, int minColumns, int maxColumns, int minRows, int maxRows)
