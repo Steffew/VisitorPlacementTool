@@ -2,19 +2,21 @@ using UnityEngine;
 
 public class Visitor : MonoBehaviour
 {
-    public bool isAdult { get; private set; }
+    public int Id { get; private set; }
+    public bool IsAdult { get; private set; }
 
-    public Visitor(bool isAdult)
+    public Visitor(int id, bool isAdult)
     {
-        this.isAdult = isAdult;
+        Id = id;
+        IsAdult = isAdult;
     }
 
-    public void Move(Seat seat)
+    public void MoveTo(Seat seat)
     {
         gameObject.transform.position = seat.transform.position;
     }
 
-    public void Move(Vector3 position)
+    public void MoveTo(Vector3 position)
     {
         gameObject.transform.position = position;
     }
