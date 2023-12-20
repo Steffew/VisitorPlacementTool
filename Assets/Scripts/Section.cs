@@ -3,7 +3,6 @@ using System.Collections.Generic;
 public class Section
 {
     public int Id { get; private set; }
-
     public List<Seat> Seats { get; private set; }
     public int Rows { get; private set; }
     public int Columns { get; private set; }
