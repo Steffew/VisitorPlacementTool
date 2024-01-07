@@ -42,20 +42,34 @@ public class AssignManager : MonoBehaviour
         {
             if (CanGroupFit(group, section) || (group.GetChildrenCount() == 0 && section.AvailableSeats.Count >= group.GetVisitors().Count))
             {
+                bool firstAdultAssigned = false;
+
                 foreach (Visitor visitor in group.GetVisitors())
                 {
-                    bool firstAdultAssigned = false;
-
-                    foreach (Seat seat in section.Seats)
+                    if (!visitor.IsAdult || !firstAdultAssigned)
                     {
-                        if (firstAdultAssigned && !visitor.IsAdult)
+                        foreach (Seat seat in section.AvailableSeats)
                         {
-                            section.OccupySeat(seat, visitor);
+                            if (seat.Id <= section.Columns)
+                            {
+                                section.OccupySeat(seat, visitor);
+                                if (visitor.IsAdult)
+                                {
+                                    firstAdultAssigned = true;
+                                }
+                                break;
+                            }
                         }
-                        else if (!firstAdultAssigned && visitor.IsAdult)
+                    }
+                    else if (visitor.IsAdult)
+                    {
+                        foreach (Seat seat in section.AvailableSeats)
                         {
-                            section.OccupySeat(seat, visitor);
-                            firstAdultAssigned = true;
+                            if (seat.Id > section.Columns)
+                            {
+                                section.OccupySeat(seat, visitor);
+                                break;
+                            }
                         }
                     }
                 }
