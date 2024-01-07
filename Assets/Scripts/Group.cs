@@ -11,8 +11,23 @@ public class Group
         Visitors = new List<Visitor>();
     }
 
-    public void Add(Visitor visitor)
+    public void AddVisitor(Visitor visitor)
     {
         ((List<Visitor>)Visitors).Add(visitor);
+    }
+
+    public void AddVisitors(List<Visitor> visitors)
+    {
+        ((List<Visitor>)Visitors).AddRange(visitors);
+    }
+
+    public void RemoveVisitor(Visitor visitor)
+    {
+        ((List<Visitor>)Visitors).Remove(visitor);
+    }
+
+    public void Clear()
+    {
+        ((List<Visitor>)Visitors).Clear();
     }
 }
