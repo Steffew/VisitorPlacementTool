@@ -59,7 +59,6 @@ public class LayoutManager : MonoBehaviour
 
                     section.Seats.Add(rowSeat.GetComponent<Seat>());
                     rowSeat.GetComponent<Seat>().SetId(section.Seats.Count);
-                    Debug.Log($"Seat {section.Seats.Count} created.");
 
                     if (randomizeRotation)
                     {
