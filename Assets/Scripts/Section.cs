@@ -12,6 +12,7 @@ public class Section
     {
         Id = id;
         Seats = new List<Seat>();
+        AvailableSeats = new List<Seat>();
         Rows = rows;
         Columns = columns;
     }
@@ -20,5 +21,10 @@ public class Section
     {
         seat.SetOccupant(visitor);
         AvailableSeats.Remove(seat);
+    }
+
+    public void SetAvailableSeats(List<Seat> seats)
+    {
+        AvailableSeats = seats;
     }
 }
