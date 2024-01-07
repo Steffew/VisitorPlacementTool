@@ -23,7 +23,7 @@ public class VisitorManager : MonoBehaviour
         //}
     }
 
-    public void GenerateGroup(int minGroupSize, int maxGroupSize, int adultChance)
+    public Group GenerateGroup(int minGroupSize, int maxGroupSize, int adultChance)
     {
         Group newGroup = new Group(Groups.Count);
         List<Visitor> visitors = new List<Visitor>();
@@ -37,6 +37,8 @@ public class VisitorManager : MonoBehaviour
 
         newGroup.AddVisitors(visitors);
         Groups.Add(newGroup);
+
+        return newGroup;
     }
 
     public void RemoveFromQueue(Visitor visitor)
