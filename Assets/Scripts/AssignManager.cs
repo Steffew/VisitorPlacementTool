@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AssignManager : MonoBehaviour
@@ -40,17 +41,20 @@ public class AssignManager : MonoBehaviour
     {
         foreach (Section section in layoutManager.GetSections())
         {
-            if (CanGroupFit(group, section) || (group.GetChildrenCount() == 0 && section.AvailableSeats.Count >= group.GetVisitors().Count))
-            {
-                bool firstAdultAssigned = false;
+            int childrenCount = group.GetChildrenCount();
+            int groupSize = group.GetVisitors().Count;
+            int seatsPerRow = section.Columns;
+            bool firstAdultAssigned = false;
 
+            if (CanGroupFit(group, section) || (childrenCount == 0 && section.AvailableSeats.Count >= groupSize - childrenCount))
+            {
                 foreach (Visitor visitor in group.GetVisitors())
                 {
-                    if (!visitor.IsAdult || !firstAdultAssigned)
+                    if (!visitor.IsAdult || (childrenCount > 0 && !firstAdultAssigned))
                     {
                         foreach (Seat seat in section.AvailableSeats)
                         {
-                            if (seat.Id <= section.Columns)
+                            if (seat.Id <= seatsPerRow)
                             {
                                 section.OccupySeat(seat, visitor);
                                 if (visitor.IsAdult)
@@ -61,11 +65,15 @@ public class AssignManager : MonoBehaviour
                             }
                         }
                     }
-                    else if (visitor.IsAdult)
+                }
+
+                if (childrenCount == 0 || firstAdultAssigned)
+                {
+                    foreach (Visitor visitor in group.GetVisitors().Where(v => v.IsAdult && !section.Seats.Any(s => s.Occupant == v)))
                     {
                         foreach (Seat seat in section.AvailableSeats)
                         {
-                            if (seat.Id > section.Columns)
+                            if (seat.Id > seatsPerRow && seat.Id <= 2 * seatsPerRow)
                             {
                                 section.OccupySeat(seat, visitor);
                                 break;
