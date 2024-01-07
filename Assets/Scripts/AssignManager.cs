@@ -10,7 +10,7 @@ public class AssignManager : MonoBehaviour
     {
         List<Section> sections = layoutManager.GetSections();
 
-        foreach (Visitor visitor in visitorManager.GetVisitorQueue())
+        foreach (Visitor visitor in visitorManager.GetQueue())
         {
             foreach (Section section in sections)
             {
