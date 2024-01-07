@@ -6,7 +6,7 @@ public class AssignManager : MonoBehaviour
     [SerializeField] private LayoutManager layoutManager;
     [SerializeField] private VisitorManager visitorManager;
 
-    public void AssignVisitors()
+    public void AssignVisitors() // TODO: Refactor or delete this method, as there should be a first come first serve system.
     {
         List<Section> sections = layoutManager.GetSections();
 
