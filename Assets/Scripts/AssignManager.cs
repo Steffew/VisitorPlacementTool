@@ -7,30 +7,32 @@ using UnityEngine;
 public class AssignManager : MonoBehaviour
 {
     [SerializeField] private LayoutManager layoutManager;
+    [SerializeField] private VisitorManager visitorManager;
 
-    public void Assign(Visitor visitor)
+    public void AssignVisitors()
     {
         List<Section> sections = layoutManager.GetSections();
 
-        foreach (Section section in sections)
+        foreach (Visitor visitor in visitorManager.GetVisitorQueue())
         {
-            int firstRow = section.Seats.Count / section.Rows;
-
-            foreach (Seat seat in section.Seats)
+            foreach (Section section in sections)
             {
-                if (seat.Occupant == null)
+                int firstRow = section.Seats.Count / section.Rows;
+
+                foreach (Seat seat in section.Seats)
                 {
-                    if (seat.Id <= firstRow && !visitor.IsAdult)
+                    if (seat.Occupant == null)
                     {
-                        seat.SetOccupant(visitor);
-                        visitor.MoveTo(seat);
-                        break;
-                    }
-                    else if (seat.Id > firstRow && visitor.IsAdult)
-                    {
-                        seat.SetOccupant(visitor);
-                        visitor.MoveTo(seat);
-                        break;
+                        if (seat.Id <= firstRow && !visitor.IsAdult)
+                        {
+                            seat.SetOccupant(visitor);
+                            visitor.MoveTo(seat);
+                        }
+                        else if (seat.Id > firstRow && visitor.IsAdult)
+                        {
+                            seat.SetOccupant(visitor);
+                            visitor.MoveTo(seat);
+                        }
                     }
                 }
             }
