@@ -5,9 +5,26 @@ using UnityEngine;
 public class VisitorManager : MonoBehaviour
 {
     public List<Visitor> Visitors { get; private set; }
+    public List<Group> Groups { get; private set; }
+    public List<Visitor> visitorQueue { get; private set; }
 
-    public void CreateVisitor(bool isAdult)
+    public void GenerateVisitorQueue(int visitorAmount, float adultChance)
     {
-        Visitors.Add(new Visitor(Visitors.Count, isAdult));
+        visitorQueue.Clear();
+
+        for (int i = 0; i < visitorAmount; i++)
+        {
+            visitorQueue.Add(new Visitor(i, Random.value < adultChance));
+        }
+    }
+
+    public List<Visitor> GetVisitorQueue()
+    {
+        return visitorQueue;
+    }
+
+    public void RemoveFromQueue(Visitor visitor)
+    {
+        visitorQueue.Remove(visitor);
     }
 }
