@@ -58,6 +58,7 @@ public class LayoutManager : MonoBehaviour
                     GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
 
                     section.Seats.Add(rowSeat.GetComponent<Seat>());
+                    section.AvailableSeats.Add(rowSeat.GetComponent<Seat>());
                     rowSeat.GetComponent<Seat>().SetId(section.Seats.Count);
 
                     if (randomizeRotation)
