@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AssignManager : MonoBehaviour
@@ -39,12 +40,24 @@ public class AssignManager : MonoBehaviour
     {
         foreach (Section section in layoutManager.GetSections())
         {
-            int firstRow = section.Seats.Count / section.Rows;
-
             if (CanGroupFit(group, section) || (group.GetChildrenCount() == 0 && section.AvailableSeats.Count >= group.GetVisitors().Count))
             {
-                foreach (Seat seat in section.Seats)
+                foreach (Visitor visitor in group.GetVisitors())
                 {
+                    bool firstAdultAssigned = false;
+
+                    foreach (Seat seat in section.Seats)
+                    {
+                        if (firstAdultAssigned && !visitor.IsAdult)
+                        {
+                            section.OccupySeat(seat, visitor);
+                        }
+                        else if (!firstAdultAssigned && visitor.IsAdult)
+                        {
+                            section.OccupySeat(seat, visitor);
+                            firstAdultAssigned = true;
+                        }
+                    }
                 }
             }
         }
@@ -53,21 +66,25 @@ public class AssignManager : MonoBehaviour
     public bool CanGroupFit(Group group, Section section)
     {
         int seatsPerRow = section.Columns;
-        int groupSize = group.GetVisitors().Count;
+        int childrenCount = group.GetChildrenCount();
+        int requiredSeats = childrenCount + 1; // Children + 1 adult
 
-        foreach (Seat availableSeat in section.AvailableSeats)
+        List<Seat> firstRowSeats = section.Seats.GetRange(0, seatsPerRow);
+
+        for (int i = 0; i <= firstRowSeats.Count - requiredSeats; i++)
         {
-            int firstAvailableIndex = section.AvailableSeats.IndexOf(availableSeat);
-
-            if (firstAvailableIndex + groupSize <= section.AvailableSeats.Count)
+            bool canFit = true;
+            for (int j = i; j < i + requiredSeats; j++)
             {
-                int rowStartIndex = availableSeat.Id / seatsPerRow * seatsPerRow;
-                int rowEndIndex = rowStartIndex + seatsPerRow;
-
-                if (availableSeat.Id + groupSize <= rowEndIndex)
+                if (firstRowSeats[j].Occupant != null)
                 {
-                    return true;
+                    canFit = false;
+                    break;
                 }
+            }
+            if (canFit)
+            {
+                return true;
             }
         }
         return false;
