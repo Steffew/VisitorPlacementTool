@@ -26,6 +26,26 @@ public class Group
         ((List<Visitor>)Visitors).Remove(visitor);
     }
 
+    public int GetChildrenCount()
+    {
+        int count = 0;
+
+        foreach (Visitor visitor in Visitors)
+        {
+            if (!visitor.IsAdult)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public List<Visitor> GetVisitors()
+    {
+        return (List<Visitor>)Visitors;
+    }
+
     public void Clear()
     {
         ((List<Visitor>)Visitors).Clear();
