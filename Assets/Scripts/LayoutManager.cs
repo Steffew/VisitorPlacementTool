@@ -58,6 +58,8 @@ public class LayoutManager : MonoBehaviour
                     GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
 
                     section.Seats.Add(rowSeat.GetComponent<Seat>());
+                    rowSeat.GetComponent<Seat>().SetId(section.Seats.Count);
+                    Debug.Log($"Seat {section.Seats.Count} created.");
 
                     if (randomizeRotation)
                     {
@@ -95,5 +97,10 @@ public class LayoutManager : MonoBehaviour
     public void SetRandomizeRotation(bool randomizeRotation)
     {
         this.randomizeRotation = randomizeRotation;
+    }
+
+    public List<Section> GetSections()
+    {
+        return sections;
     }
 }
