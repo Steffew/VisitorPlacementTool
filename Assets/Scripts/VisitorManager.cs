@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,22 +5,7 @@ public class VisitorManager : MonoBehaviour
 {
     public List<Visitor> Visitors { get; private set; }
     public List<Group> Groups { get; private set; }
-    public List<Visitor> Queue { get; private set; }
-
-    public List<Visitor> GetQueue()
-    {
-        return Queue;
-    }
-
-    public void AddToQueue(int visitorAmount)
-    {
-        //Queue.Clear();
-
-        //for (int i = 0; i < visitorAmount; i++)
-        //{
-        //    Queue.Add(new Visitor(i, Random.value < adultChance));
-        //}
-    }
+    public List<Group> Queue { get; private set; }
 
     public Group GenerateGroup(int minGroupSize, int maxGroupSize, int adultChance)
     {
@@ -36,13 +20,22 @@ public class VisitorManager : MonoBehaviour
         }
 
         newGroup.AddVisitors(visitors);
-        Groups.Add(newGroup);
 
         return newGroup;
     }
 
-    public void RemoveFromQueue(Visitor visitor)
+    public void AddToQueue(Group group)
     {
-        Queue.Remove(visitor);
+        Queue.Add(group);
+    }
+
+    public void RemoveFromQueue(Group group)
+    {
+        Queue.Remove(group);
+    }
+
+    public List<Group> GetQueue()
+    {
+        return Queue;
     }
 }
