@@ -15,12 +15,12 @@ public class VisitorManager : MonoBehaviour
 
     public void AddToQueue(int visitorAmount)
     {
-        Queue.Clear();
+        //Queue.Clear();
 
-        for (int i = 0; i < visitorAmount; i++)
-        {
-            Queue.Add(new Visitor(i, Random.value < adultChance));
-        }
+        //for (int i = 0; i < visitorAmount; i++)
+        //{
+        //    Queue.Add(new Visitor(i, Random.value < adultChance));
+        //}
     }
 
     public void GenerateGroup(int minGroupSize, int maxGroupSize, int adultChance)
