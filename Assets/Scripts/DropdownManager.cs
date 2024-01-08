@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DropdownManager : MonoBehaviour
 {
-    [SerializeField]
-    private LayoutManager layoutManager;
+    [SerializeField] private LayoutManager layoutManager;
+    [SerializeField] private VisitorManager visitorManager;
+    private int groupSize = 3;
+    private float childChanceMin = 0.2f;
+    private float childChanceMax = 0.4f;
 
     public void SetLayoutValues(int index)
     {
@@ -43,6 +46,58 @@ public class DropdownManager : MonoBehaviour
 
             case 1: // Disabled
                 layoutManager.SetRandomizeRotation(false);
+                break;
+        }
+    }
+
+    public void SetGroupSize(int index)
+    {
+        switch (index)
+        {
+            case 0: // 1 person;
+                groupSize = 1;
+                break;
+            case 1: // 2 people;
+                groupSize = 2;
+                break;
+            case 2: // 3 people;
+                groupSize = 3;
+                break;
+            case 3: // 4 people;
+                groupSize = 4;
+                break;
+            case 4: // 5 people;
+                groupSize = 5;
+                break;
+            case 5: // 6 people;
+                groupSize = 6;
+                break;
+        }
+    }
+
+    public void SetAdultChance(int index)
+    {
+        switch (index)
+        {
+            case 0: // 0 - 20;
+                childChanceMin = 0;
+                childChanceMax = 0.2f;
+                break;
+            case 1: // 20 - 40;
+                childChanceMin = 0.2f;
+                childChanceMax = 0.4f;
+                break;
+            case 2: // 40 - 60;
+                childChanceMin = 0.4f;
+                childChanceMax = 0.6f;
+                break;
+            case 3: // 60 - 80;
+                childChanceMin = 0.6f;
+                childChanceMax = 0.8f;
+                break;
+            case 4: // 80 - 100;
+                childChanceMin = 0.8f;
+                childChanceMax = 1;
                 break;
         }
     }
