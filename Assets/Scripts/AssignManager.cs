@@ -105,10 +105,12 @@ public class AssignManager : MonoBehaviour
     {
         int seatsPerRow = section.Columns;
         int childrenCount = group.GetChildrenCount();
-        int requiredSeats = childrenCount + 1; // Children + 1 adult
+        int amountOfAdultsNecessary = 1;
+        int requiredSeats = childrenCount + amountOfAdultsNecessary;
 
         List<Seat> firstRowSeats = section.Seats.GetRange(0, seatsPerRow);
 
+        // TIMO: vvvvvvvvv ????????
         for (int i = 0; i <= firstRowSeats.Count - requiredSeats; i++)
         {
             bool canFit = true;
