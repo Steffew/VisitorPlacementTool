@@ -1725,12 +1725,12 @@ GameObject:
   - component: {fileID: 614576858}
   - component: {fileID: 614576857}
   m_Layer: 5
-  m_Name: AssignButton
+  m_Name: NextGroupButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &614576856
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2253,7 +2253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Assign visitors
+  m_text: Next group
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2733c89d670bbd343b9816191fbd1651, type: 2}
   m_sharedMaterial: {fileID: -7743550778569536925, guid: 2733c89d670bbd343b9816191fbd1651,
