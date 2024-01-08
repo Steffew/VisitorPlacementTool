@@ -11,7 +11,7 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private float childChanceMin = 0.2f;
     [SerializeField] private float childChanceMax = 0.4f;
 
-    public Group GenerateGroup(int adultChance)
+    public Group GenerateGroup()
     {
         Group newGroup = new Group(Groups.Count);
         List<Visitor> visitors = new List<Visitor>();
@@ -20,13 +20,16 @@ public class VisitorManager : MonoBehaviour
 
         for (int i = 1; i < groupSize; i++)
         {
-            visitors.Add(new Visitor(i + 1, Random.value < adultChance));
+            float childChance = Random.Range(childChanceMin, childChanceMax);
+            bool isAdult = Random.value > childChance;
+            visitors.Add(new Visitor(i, isAdult));
         }
 
         newGroup.AddVisitors(visitors);
 
         return newGroup;
     }
+
 
     public void AddToQueue(Group group)
     {
