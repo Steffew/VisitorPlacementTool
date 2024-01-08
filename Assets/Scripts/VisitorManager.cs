@@ -11,6 +11,7 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private float childChanceMin = 0.2f;
     [SerializeField] private float childChanceMax = 0.4f;
     [SerializeField] private GameObject visitorPrefab;
+    [SerializeField] private Transform visitorSpawn;
 
     void Awake()
     {
@@ -25,14 +26,14 @@ public class VisitorManager : MonoBehaviour
         Group newGroup = new Group(Groups.Count);
         List<Visitor> visitors = new List<Visitor>();
 
-        GameObject firstVisitorObj = Instantiate(visitorPrefab, transform.position, Quaternion.identity);
+        GameObject firstVisitorObj = Instantiate(visitorPrefab, visitorSpawn.position, Quaternion.identity);
         Visitor firstVisitor = firstVisitorObj.GetComponent<Visitor>();
         firstVisitor.Initialize(0, true);
         visitors.Add(firstVisitor);
 
         for (int i = 1; i < groupSize; i++)
         {
-            GameObject visitorObj = Instantiate(visitorPrefab, transform.position, Quaternion.identity);
+            GameObject visitorObj = Instantiate(visitorPrefab, visitorSpawn.position, Quaternion.identity);
             Visitor visitor = visitorObj.GetComponent<Visitor>();
             float childChance = Random.Range(childChanceMin, childChanceMax);
             bool isAdult = Random.value > childChance;

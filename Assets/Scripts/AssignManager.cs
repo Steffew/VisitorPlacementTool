@@ -37,6 +37,16 @@ public class AssignManager : MonoBehaviour
     //    }
     //}
 
+    public void AssignFromQueue()
+    {
+        List<Group> queue = visitorManager.GetQueue();
+
+        foreach (Group group in queue)
+        {
+            AssignGroup(group);
+        }
+    }
+
     public void AssignGroup(Group group)
     {
         foreach (Section section in layoutManager.GetSections())
@@ -46,7 +56,7 @@ public class AssignManager : MonoBehaviour
             int seatsPerRow = section.Columns;
             bool firstAdultAssigned = false;
 
-            if (CanGroupFit(group, section) || (childrenCount == 0 && section.AvailableSeats.Count >= groupSize - childrenCount))
+            if (CanGroupFit(group, section) || (childrenCount == 0 && section.AvailableSeats.Count >= groupSize))
             {
                 foreach (Visitor visitor in group.GetVisitors())
                 {
@@ -54,9 +64,13 @@ public class AssignManager : MonoBehaviour
                     {
                         foreach (Seat seat in section.AvailableSeats)
                         {
-                            if (seat.Id <= seatsPerRow)
+                            if (seat.Id <= seatsPerRow) // todo TIMO: Maybe use a different name than ID (seat number maybe? Like in the expensive cinemas). Is this check still necessary even :)?
                             {
                                 section.OccupySeat(seat, visitor);
+                                visitor.MoveTo(seat);
+
+                                section.AvailableSeats.Remove(seat); // TODO: does this work? won't this throw modified list exception?
+
                                 if (visitor.IsAdult)
                                 {
                                     firstAdultAssigned = true;
@@ -67,9 +81,11 @@ public class AssignManager : MonoBehaviour
                     }
                 }
 
+
                 if (childrenCount == 0 || firstAdultAssigned)
                 {
-                    foreach (Visitor visitor in group.GetVisitors().Where(v => v.IsAdult && !section.Seats.Any(s => s.Occupant == v)))
+                    var visitorsAdultNotPlaced = group.GetVisitors().Where(v => v.IsAdult && !section.Seats.Any(s => s.Occupant == v)).ToList();
+                    foreach (Visitor visitor in visitorsAdultNotPlaced)
                     {
                         foreach (Seat seat in section.AvailableSeats)
                         {
