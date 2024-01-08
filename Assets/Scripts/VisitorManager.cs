@@ -10,19 +10,34 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private int groupSize = 3;
     [SerializeField] private float childChanceMin = 0.2f;
     [SerializeField] private float childChanceMax = 0.4f;
+    [SerializeField] private GameObject visitorPrefab;
+
+    void Awake()
+    {
+        Visitors = new List<Visitor>();
+        Groups = new List<Group>();
+        Queue = new List<Group>();
+    }
+
 
     public Group GenerateGroup()
     {
         Group newGroup = new Group(Groups.Count);
         List<Visitor> visitors = new List<Visitor>();
 
-        visitors.Add(new Visitor(0, true));
+        GameObject firstVisitorObj = Instantiate(visitorPrefab, transform.position, Quaternion.identity);
+        Visitor firstVisitor = firstVisitorObj.GetComponent<Visitor>();
+        firstVisitor.Initialize(0, true);
+        visitors.Add(firstVisitor);
 
         for (int i = 1; i < groupSize; i++)
         {
+            GameObject visitorObj = Instantiate(visitorPrefab, transform.position, Quaternion.identity);
+            Visitor visitor = visitorObj.GetComponent<Visitor>();
             float childChance = Random.Range(childChanceMin, childChanceMax);
             bool isAdult = Random.value > childChance;
-            visitors.Add(new Visitor(i, isAdult));
+            visitor.Initialize(i, isAdult);
+            visitors.Add(visitor);
         }
 
         newGroup.AddVisitors(visitors);
@@ -30,10 +45,14 @@ public class VisitorManager : MonoBehaviour
         return newGroup;
     }
 
-
     public void AddToQueue(Group group)
     {
         Queue.Add(group);
+    }
+
+    public void AddToQueue()
+    {
+        Queue.Add(GenerateGroup());
     }
 
     public void RemoveFromQueue(Group group)
