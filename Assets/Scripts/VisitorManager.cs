@@ -7,14 +7,14 @@ public class VisitorManager : MonoBehaviour
     public List<Group> Groups { get; private set; }
     public List<Group> Queue { get; private set; }
 
-    public Group GenerateGroup(int minGroupSize, int maxGroupSize, int adultChance)
+    public Group GenerateGroup(int groupSize, int adultChance)
     {
         Group newGroup = new Group(Groups.Count);
         List<Visitor> visitors = new List<Visitor>();
 
         visitors.Add(new Visitor(0, true));
 
-        for (int i = 0; i < Random.Range(minGroupSize, maxGroupSize); i++)
+        for (int i = 1; i < groupSize; i++)
         {
             visitors.Add(new Visitor(i + 1, Random.value < adultChance));
         }
