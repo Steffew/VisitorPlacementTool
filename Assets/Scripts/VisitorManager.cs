@@ -7,9 +7,9 @@ public class VisitorManager : MonoBehaviour
     public List<Group> Groups { get; private set; }
     public List<Group> Queue { get; private set; }
 
-    private int groupSize = 3;
-    private float childChanceMin = 0.2f;
-    private float childChanceMax = 0.4f;
+    [SerializeField] private int groupSize = 3;
+    [SerializeField] private float childChanceMin = 0.2f;
+    [SerializeField] private float childChanceMax = 0.4f;
 
     public Group GenerateGroup(int adultChance)
     {
