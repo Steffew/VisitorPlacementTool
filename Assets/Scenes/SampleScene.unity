@@ -3171,6 +3171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layoutManager: {fileID: 1791607951}
+  visitorManager: {fileID: 1791607953}
 --- !u!1 &765090577
 GameObject:
   m_ObjectHideFlags: 0
