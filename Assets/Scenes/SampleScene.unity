@@ -399,6 +399,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 864835720878176476, guid: 814f215a70b870746a8b65d9676e3a02,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 864835720878176476, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 864835720878176476, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
       propertyPath: m_Options.m_Options.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -426,6 +436,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: 0% - 20%
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
         type: 3}
@@ -460,6 +475,11 @@ PrefabInstance:
     - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
@@ -467,6 +487,21 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 762286684}
+    - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetAdultChance
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DropdownManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2453751140405322190, guid: 814f215a70b870746a8b65d9676e3a02,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3329454702974145794, guid: 814f215a70b870746a8b65d9676e3a02,
         type: 3}
       propertyPath: m_Name
@@ -640,7 +675,7 @@ MonoBehaviour:
   m_Placeholder: {fileID: 0}
   m_ItemText: {fileID: 918783743}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 2
   m_Options:
     m_Options:
     - m_Text: 1 person (disable groups)
@@ -657,7 +692,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 762286684}
+        m_TargetAssemblyTypeName: DropdownManager, Assembly-CSharp
+        m_MethodName: SetGroupSize
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &154010630
 MonoBehaviour:
@@ -2383,7 +2430,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 607971321}
   m_HandleRect: {fileID: 866763745}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.68472904
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2509,7 +2556,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 614576858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791607953}
+        m_TargetAssemblyTypeName: VisitorManager, Assembly-CSharp
+        m_MethodName: AddToQueue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &614576858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4213,7 +4272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1 person (disable groups)
+  m_text: 3 people
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5070f9f6f1d437f468f84c6d018df7cc, type: 2}
   m_sharedMaterial: {fileID: 5530475885776065463, guid: 5070f9f6f1d437f468f84c6d018df7cc,
@@ -5786,6 +5845,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6bf2c7ef168664f991b1091aedbca8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groupSize: 3
+  childChanceMin: 0.2
+  childChanceMax: 0.4
+  visitorPrefab: {fileID: 6713389715104225966, guid: d609c066a2f8a9a44bde97f2e9f504dc,
+    type: 3}
 --- !u!1 &1862980529
 GameObject:
   m_ObjectHideFlags: 0
