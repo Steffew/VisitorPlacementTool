@@ -69,7 +69,7 @@ public class AssignManager : MonoBehaviour
                                 section.OccupySeat(seat, visitor);
                                 visitor.MoveTo(seat);
 
-                                section.AvailableSeats.Remove(seat); // TODO: does this work? won't this throw modified list exception?
+                                section.AvailableSeats.Remove(seat); // TODO: modified list exception?
 
                                 if (visitor.IsAdult)
                                 {
@@ -80,7 +80,6 @@ public class AssignManager : MonoBehaviour
                         }
                     }
                 }
-
 
                 if (childrenCount == 0 || firstAdultAssigned)
                 {
