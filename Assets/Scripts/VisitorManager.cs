@@ -13,13 +13,27 @@ public class VisitorManager : MonoBehaviour
     [SerializeField] private GameObject visitorPrefab;
     [SerializeField] private Transform visitorSpawn;
 
-    void Awake()
+    private void Awake()
+    {
+        Initialize();
+    }
+
+    public void Initialize()
     {
         Visitors = new List<Visitor>();
         Groups = new List<Group>();
         Queue = new List<Group>();
     }
 
+    public void SetVisitorPrefab(GameObject prefab)
+    {
+        visitorPrefab = prefab;
+    }
+
+    public void SetVisitorSpawn(Transform spawn)
+    {
+        visitorSpawn = spawn;
+    }
 
     public Group GenerateGroup()
     {
@@ -70,7 +84,7 @@ public class VisitorManager : MonoBehaviour
     {
         this.groupSize = groupSize;
     }
-    
+
     public void SetParameters(float childChanceMin, float childChanceMax)
     {
         this.childChanceMin = childChanceMin;
