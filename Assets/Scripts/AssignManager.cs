@@ -11,7 +11,7 @@ public class AssignManager : MonoBehaviour
     {
         foreach (Section section in layoutManager.GetSections())
         {
-            if (CanGroupFit(group, section, true))
+            if (CanGroupFit(group, section, singleRowAssignment: true))
             {
                 var unoccupiedSeats = section.Seats.Where(seat => seat.Occupant == null).ToList();
                 int seatIndex = 0;
@@ -30,7 +30,7 @@ public class AssignManager : MonoBehaviour
         }
     }
 
-    public bool CanGroupFit(Group group, Section section, bool singleRowAssignment)
+    public bool CanGroupFit(Group group, Section section, bool singleRowAssignment = false)
     {
         int amountOfAdultsNecessary = 1;
         int childrenCount = group.GetChildrenCount();
@@ -49,7 +49,7 @@ public class AssignManager : MonoBehaviour
 
             foreach (Seat seat in section.AvailableSeats)
             {
-                if (seat.RowNumber <= seatsPerRow) // Todo: This will always be true, but I'm leaving it in for now. I need to add more variables to the Seat class in order to make this work.
+                if (seat.ColumnNumber <= seatsPerRow) // Todo: This will always be true, but I'm leaving it in for now. I need to add more variables to the Seat class in order to make this work.
                 {
                     successiveSeats++;
                 }
