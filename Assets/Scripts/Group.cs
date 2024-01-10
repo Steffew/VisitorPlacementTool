@@ -41,6 +41,21 @@ public class Group
         return count;
     }
 
+    public int GetAdultsCount()
+    {
+        int count = 0;
+
+        foreach (Visitor visitor in Visitors)
+        {
+            if (visitor.IsAdult)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public List<Visitor> GetVisitors()
     {
         return (List<Visitor>)Visitors;
