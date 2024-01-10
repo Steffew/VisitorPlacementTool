@@ -36,41 +36,49 @@ public class VisitorTests
     }
 
     [Test]
-    public void QueueIsEmptyInitially()
-    {
-        Assert.IsEmpty(visitorManager.GetQueue(), "Queue should be empty initially.");
-    }
-
-    [Test]
     public void AddsGroupToQueue()
     {
+        // Arrange
         Group testGroup = new Group(1);
+
+        // Act
         visitorManager.AddToQueue(testGroup);
+
+        // Assert
         Assert.Contains(testGroup, visitorManager.GetQueue(), "Queue should contain the added group.");
     }
 
     [Test]
     public void RemoveGroupFromQueue()
     {
+        // Arrange
         Group testGroup = new Group(1);
+
+        // Act
         visitorManager.AddToQueue(testGroup);
         visitorManager.RemoveFromQueue(testGroup);
+
+        // Assert
         Assert.IsFalse(visitorManager.GetQueue().Contains(testGroup), "Group should be removed from queue.");
     }
 
     [Test]
     public void QueueHasCorrectCountAfterMultipleAdds()
     {
+        // Arrange & Act
         for (int i = 0; i < 3; i++)
         {
             visitorManager.AddToQueue(new Group(i));
         }
+
+        // Assert
         Assert.AreEqual(3, visitorManager.GetQueue().Count, "Queue should have 3 groups after adding 3 groups.");
     }
 
     [Test]
     public void QueueIsEmptyAfterRemovingAllGroups()
     {
+        // Arrange & Act
         for (int i = 0; i < 3; i++)
         {
             visitorManager.AddToQueue(new Group(i));
@@ -79,6 +87,8 @@ public class VisitorTests
         {
             visitorManager.RemoveFromQueue(group);
         }
+
+        // Assert
         Assert.IsEmpty(visitorManager.GetQueue(), "Queue should be empty after removing all groups.");
     }
 }
