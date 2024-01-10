@@ -47,85 +47,105 @@ public class AssignManager : MonoBehaviour
         }
     }
 
+    //public void AssignGroup(Group group)
+    //{
+    //    foreach (Section section in layoutManager.GetSections())
+    //    {
+    //        int childrenCount = group.GetChildrenCount();
+    //        int groupSize = group.GetVisitors().Count;
+    //        int seatsPerRow = section.Columns;
+    //        bool firstAdultAssigned = false;
+
+    //        if (CanGroupFit(group, section) || (childrenCount == 0 && section.AvailableSeats.Count >= groupSize))
+    //        {
+    //            foreach (Visitor visitor in group.GetVisitors())
+    //            {
+    //                if (!visitor.IsAdult || (childrenCount > 0 && !firstAdultAssigned))
+    //                {
+    //                    foreach (Seat seat in section.AvailableSeats)
+    //                    {
+    //                        if (seat.Id <= seatsPerRow) // todo TIMO: Maybe use a different name than ID (seat number maybe? Like in the expensive cinemas). Is this check still necessary even :)?
+    //                        {
+    //                            section.OccupySeat(seat, visitor);
+    //                            visitor.MoveTo(seat);
+
+
+    //                            if (visitor.IsAdult)
+    //                            {
+    //                                firstAdultAssigned = true;
+    //                            }
+    //                            break;
+    //                        }
+                            
+    //                        section.AvailableSeats.Remove(seat); // todo: Check for modified list exception.
+    //                    }
+    //                }
+    //            }
+
+    //            if (childrenCount == 0 || firstAdultAssigned)
+    //            {
+    //                var visitorsAdultNotPlaced = group.GetVisitors().Where(v => v.IsAdult && !section.Seats.Any(s => s.Occupant == v)).ToList();
+    //                foreach (Visitor visitor in visitorsAdultNotPlaced)
+    //                {
+    //                    foreach (Seat seat in section.AvailableSeats)
+    //                    {
+    //                        if (seat.Id > seatsPerRow && seat.Id <= 2 * seatsPerRow)
+    //                        {
+    //                            section.OccupySeat(seat, visitor);
+    //                            break;
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+
     public void AssignGroup(Group group)
     {
+        int adultCount = group.GetAdultsCount();
+        int childrenCount = group.GetChildrenCount();
+        int groupSize = group.GetVisitors().Count;
+
         foreach (Section section in layoutManager.GetSections())
         {
-            int childrenCount = group.GetChildrenCount();
-            int groupSize = group.GetVisitors().Count;
-            int seatsPerRow = section.Columns;
-            bool firstAdultAssigned = false;
+            int seatsPerRow = section.Seats.Count / section.Rows;
 
-            if (CanGroupFit(group, section) || (childrenCount == 0 && section.AvailableSeats.Count >= groupSize))
+            if (CanGroupFit(group, section, true))
             {
-                foreach (Visitor visitor in group.GetVisitors())
-                {
-                    if (!visitor.IsAdult || (childrenCount > 0 && !firstAdultAssigned))
-                    {
-                        foreach (Seat seat in section.AvailableSeats)
-                        {
-                            if (seat.Id <= seatsPerRow) // todo TIMO: Maybe use a different name than ID (seat number maybe? Like in the expensive cinemas). Is this check still necessary even :)?
-                            {
-                                section.OccupySeat(seat, visitor);
-                                visitor.MoveTo(seat);
 
-                                section.AvailableSeats.Remove(seat); // TODO: modified list exception?
-
-                                if (visitor.IsAdult)
-                                {
-                                    firstAdultAssigned = true;
-                                }
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                if (childrenCount == 0 || firstAdultAssigned)
-                {
-                    var visitorsAdultNotPlaced = group.GetVisitors().Where(v => v.IsAdult && !section.Seats.Any(s => s.Occupant == v)).ToList();
-                    foreach (Visitor visitor in visitorsAdultNotPlaced)
-                    {
-                        foreach (Seat seat in section.AvailableSeats)
-                        {
-                            if (seat.Id > seatsPerRow && seat.Id <= 2 * seatsPerRow)
-                            {
-                                section.OccupySeat(seat, visitor);
-                                break;
-                            }
-                        }
-                    }
-                }
             }
         }
     }
 
-    public bool CanGroupFit(Group group, Section section)
+    public bool CanGroupFit(Group group, Section section, bool singleRowAssignment)
     {
-        int seatsPerRow = section.Columns;
-        int childrenCount = group.GetChildrenCount();
         int amountOfAdultsNecessary = 1;
+        int childrenCount = group.GetChildrenCount();
         int requiredSeats = childrenCount + amountOfAdultsNecessary;
+        int availableSeats = section.AvailableSeats.Count;
+        int seatsPerRow = section.Seats.Count / section.Rows;
 
-        List<Seat> firstRowSeats = section.Seats.GetRange(0, seatsPerRow);
-
-        // TIMO: vvvvvvvvv ????????
-        for (int i = 0; i <= firstRowSeats.Count - requiredSeats; i++)
+        if (!singleRowAssignment && requiredSeats >= availableSeats)
         {
-            bool canFit = true;
-            for (int j = i; j < i + requiredSeats; j++)
+            return true;
+        }
+
+        if (singleRowAssignment && requiredSeats >= availableSeats)
+        {
+            int successiveSeats = 0;
+
+            foreach (Seat seat in section.AvailableSeats)
             {
-                if (firstRowSeats[j].Occupant != null)
+                if (seat.RowNumber <= seatsPerRow) // Todo: This will always be true, but I'm leaving it in for now. I need to add more variables to the Seat class in order to make this work.
                 {
-                    canFit = false;
-                    break;
+                    successiveSeats++;
                 }
-            }
-            if (canFit)
-            {
-                return true;
+
+                return (successiveSeats == requiredSeats);
             }
         }
+
         return false;
     }
 }
