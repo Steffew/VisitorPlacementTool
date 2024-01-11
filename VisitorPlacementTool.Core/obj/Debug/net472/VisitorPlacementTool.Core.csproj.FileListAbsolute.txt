@@ -1,0 +1,12 @@
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\bin\Debug\net472\VisitorPlacementTool.Core.dll
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\bin\Debug\net472\VisitorPlacementTool.Core.pdb
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.csproj.AssemblyReference.cache
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.GeneratedMSBuildEditorConfig.editorconfig
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.AssemblyInfoInputs.cache
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.AssemblyInfo.cs
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.csproj.CoreCompileInputs.cache
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.sourcelink.json
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.dll
+X:\repos\VisitorPlacementTool\VisitorPlacementTool.Core\obj\Debug\net472\VisitorPlacementTool.Core.pdb
+X:\repos\VisitorPlacementTool\Assets\Plugins\net472\VisitorPlacementTool.Core.dll
+X:\repos\VisitorPlacementTool\Assets\Plugins\net472\VisitorPlacementTool.Core.pdb
