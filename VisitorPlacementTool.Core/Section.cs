@@ -11,7 +11,6 @@ namespace VisitorPlacementTool.Core
         {
             Id = id;
             Seats = new List<Seat>();
-            AvailableSeats = new List<Seat>();
             Rows = rows;
             Columns = columns;
         }
