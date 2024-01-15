@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisitorPlacementTool.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0640620a9d5743e257616aa974ed09b3576736d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisitorPlacementTool.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisitorPlacementTool.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
