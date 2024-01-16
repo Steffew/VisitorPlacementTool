@@ -1,4 +1,7 @@
-﻿namespace VisitorPlacementTool.Core.Managers
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace VisitorPlacementTool.Core.Managers
 {
     public class LayoutManager
     {

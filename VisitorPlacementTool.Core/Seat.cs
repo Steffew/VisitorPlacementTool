@@ -3,7 +3,7 @@
     public class Seat
     {
         public int Id { get; private set; }
-        public Visitor? Occupant { get; private set; }
+        public Visitor Occupant { get; private set; }
         public int RowNumber { get; private set; }
         public int ColumnNumber { get; private set; }
 
