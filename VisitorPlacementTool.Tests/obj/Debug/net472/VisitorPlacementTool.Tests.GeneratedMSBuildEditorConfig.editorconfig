@@ -1,0 +1,5 @@
+is_global = true
+build_property.RootNamespace = VisitorPlacementTool.Tests
+build_property.ProjectDir = X:\repos\VisitorPlacementTool\VisitorPlacementTool.Tests\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

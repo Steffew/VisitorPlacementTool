@@ -58,6 +58,11 @@ namespace VisitorPlacementTool.Core
             return count;
         }
 
+        public int GetVisitorsCount()
+        {
+            return ((List<Visitor>)Visitors).Count;
+        }
+
         public List<Visitor> GetVisitors()
         {
             return (List<Visitor>)Visitors;
