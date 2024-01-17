@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace VisitorPlacementTool.Core
 {
@@ -20,6 +21,26 @@ namespace VisitorPlacementTool.Core
         public void OccupySeat(Seat seat, Visitor visitor)
         {
             seat.SetOccupant(visitor);
+        }
+
+        public bool CanGroupFit(Group group, bool firstRowAssignment = false)
+        {
+            int amountOfAdultsNecessary = 1;
+            int childrenCount = group.GetChildrenCount();
+            int requiredSeats = childrenCount + amountOfAdultsNecessary;
+
+            if (!firstRowAssignment)
+            {
+                int availableSeats = Seats.Count(seat => seat.Occupant == null);
+                return requiredSeats <= availableSeats;
+            }
+            else
+            {
+                int availableSeatsInFirstRow = Seats
+                    .Count(seat => seat.Occupant == null && seat.RowNumber == 1);
+
+                return requiredSeats <= availableSeatsInFirstRow;
+            }
         }
     }
 }
