@@ -32,5 +32,35 @@ namespace VisitorPlacementTool.Core
         {
             ((List<Section>)Sections).Clear();
         }
+
+        public void AssignToSections(Group group)
+        {
+            bool firstRowAssignment = group.GetChildrenCount() > 0 ? true : false;
+
+            foreach (Section section in Sections)
+            {
+                if (section.CanGroupFit(group, firstRowAssignment))
+                {
+                    foreach (Visitor visitor in group.Visitors.Where(visitor => visitor.IsAssigned == false))
+                    {
+                        Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null);
+
+                        section.OccupySeat(seat, visitor);
+                    }
+                }
+            }
+        }
+
+        public int GetOccupiedSeatsAmount()
+        {
+            int occupiedSeats = 0;
+
+            foreach (Section section in Sections)
+            {
+                occupiedSeats += section.GetOccupiedSeatsAmount();
+            }
+
+            return occupiedSeats;
+        }
     }
 }
