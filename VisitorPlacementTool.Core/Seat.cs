@@ -7,9 +7,11 @@
         public int RowNumber { get; private set; }
         public int ColumnNumber { get; private set; }
 
-        public void SetId(int id)
+        public Seat(int id, int rowNumber, int columnNumber)
         {
             Id = id;
+            RowNumber = rowNumber;
+            ColumnNumber = columnNumber;
         }
 
         public void SetOccupant(Visitor occupant)
