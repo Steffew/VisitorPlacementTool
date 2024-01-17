@@ -16,11 +16,21 @@ namespace VisitorPlacementTool.Core
             Seats = new List<Seat>();
             Rows = rows;
             Columns = columns;
+
+            for (int row = 1; row <= rows; row++) // todo: check if this is correct
+            {
+                for (int column = 1; column <= columns; column++)
+                {
+                    Seat seat = new Seat(Seats.Count, row, column);
+                    Seats.Add(seat);
+                }
+            }
         }
 
         public void OccupySeat(Seat seat, Visitor visitor)
         {
             seat.SetOccupant(visitor);
+            visitor.SetIsAssigned(true);
         }
 
         public bool CanGroupFit(Group group, bool firstRowAssignment = false)
@@ -41,6 +51,11 @@ namespace VisitorPlacementTool.Core
 
                 return requiredSeats <= availableSeatsInFirstRow;
             }
+        }
+
+        public int GetOccupiedSeatsAmount()
+        {
+            return Seats.Count(seat => seat.Occupant != null);
         }
     }
 }
