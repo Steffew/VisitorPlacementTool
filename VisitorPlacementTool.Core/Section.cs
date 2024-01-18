@@ -17,9 +17,9 @@ namespace VisitorPlacementTool.Core
             Rows = rows;
             Columns = columns;
 
-            for (int row = 1; row <= rows; row++) // todo: check if this is correct
+            for (int column = 1; column <= columns; column++)
             {
-                for (int column = 1; column <= columns; column++)
+                for (int row = 1; row <= rows; row++)
                 {
                     Seat seat = new Seat(Seats.Count, row, column);
                     Seats.Add(seat);
@@ -33,10 +33,11 @@ namespace VisitorPlacementTool.Core
             visitor.SetIsAssigned(true);
         }
 
-        public bool CanGroupFit(Group group, bool firstRowAssignment = false)
+        public bool CanGroupFit(Group group)
         {
             int amountOfAdultsNecessary = 1;
             int childrenCount = group.GetChildrenCount();
+            bool firstRowAssignment = childrenCount > 0 ? true : false;
             int requiredSeats = childrenCount + amountOfAdultsNecessary;
 
             if (!firstRowAssignment)
@@ -47,7 +48,7 @@ namespace VisitorPlacementTool.Core
             else
             {
                 int availableSeatsInFirstRow = Seats
-                    .Count(seat => seat.Occupant == null && seat.RowNumber == 1);
+                    .Count(seat => seat.Occupant == null && seat.ColumnNumber == 1);
 
                 return requiredSeats <= availableSeatsInFirstRow;
             }
