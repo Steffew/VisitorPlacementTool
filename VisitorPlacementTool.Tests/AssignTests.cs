@@ -80,7 +80,7 @@ namespace VisitorPlacementTool.Tests
             // Act
             section.CanGroupFit(group);
 
-            // Assert, check if adults are not in the first row,use lambda expression
+            // Assert
             Assert.True(section.Seats.Where(seat => seat.Occupant != null && seat.ColumnNumber > 1).Count() == 0);
         }
     }
