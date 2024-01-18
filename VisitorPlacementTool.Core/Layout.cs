@@ -45,7 +45,7 @@ namespace VisitorPlacementTool.Core
                     {
                         Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null && s.ColumnNumber > 1);
 
-                        OccupySeat(seat, visitor);
+                        section.OccupySeat(seat, visitor);
                     }
                 }
                 else
@@ -54,22 +54,10 @@ namespace VisitorPlacementTool.Core
                     {
                         Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null && s.ColumnNumber == 1);
 
-                        OccupySeat(seat, visitor);
+                        section.OccupySeat(seat, visitor);
                     }
                 }
             }
-        }
-
-
-        public void OccupySeat(Seat seat, Visitor visitor, int startFromRow = 1)
-        {
-            foreach (Section section in Sections.Skip(section.))
-            {
-                if (section.Seats.Contains(seat))
-                {
-                    section.OccupySeat(seat, visitor);
-                }
-            }   
         }
 
         public int GetOccupiedSeatsAmount()

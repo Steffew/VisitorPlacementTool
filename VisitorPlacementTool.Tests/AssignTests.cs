@@ -64,5 +64,24 @@ namespace VisitorPlacementTool.Tests
             // Assert
             Assert.True(section.CanGroupFit(group));
         }
+
+        [Fact]
+        public void CheckIfAdultGroupIsNotInFirstRow()
+        {
+            // Arrange  
+            var layout = new Layout();
+            Section section = new Section(id: 1, rows: 2, columns: 3);
+            layout.AddSection(section);
+
+            var group = new Group(id: 1);
+            group.AddVisitor(new Visitor(id: 1, isAdult: true));
+            group.AddVisitor(new Visitor(id: 2, isAdult: true));
+
+            // Act
+            section.CanGroupFit(group);
+
+            // Assert, check if adults are not in the first row,use lambda expression
+            Assert.True(section.Seats.Where(seat => seat.Occupant != null && seat.ColumnNumber > 1).Count() == 0);
+        }
     }
 }
