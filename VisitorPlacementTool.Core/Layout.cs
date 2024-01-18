@@ -35,20 +35,41 @@ namespace VisitorPlacementTool.Core
 
         public void AssignToSections(Group group)
         {
-            bool firstRowAssignment = group.GetChildrenCount() > 0 ? true : false;
+            bool containsChildren = group.GetChildrenCount() > 0 ? true : false;
 
             foreach (Section section in Sections)
             {
-                if (section.CanGroupFit(group, firstRowAssignment))
+                if (!containsChildren)
                 {
                     foreach (Visitor visitor in group.Visitors.Where(visitor => visitor.IsAssigned == false))
                     {
-                        Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null);
+                        Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null && s.ColumnNumber > 1);
 
-                        section.OccupySeat(seat, visitor);
+                        OccupySeat(seat, visitor);
+                    }
+                }
+                else
+                {
+                    foreach (Visitor visitor in group.Visitors.Where(visitor => visitor.IsAssigned == false))
+                    {
+                        Seat seat = section.Seats.FirstOrDefault(s => s.Occupant == null && s.ColumnNumber == 1);
+
+                        OccupySeat(seat, visitor);
                     }
                 }
             }
+        }
+
+
+        public void OccupySeat(Seat seat, Visitor visitor, int startFromRow = 1)
+        {
+            foreach (Section section in Sections.Skip(section.))
+            {
+                if (section.Seats.Contains(seat))
+                {
+                    section.OccupySeat(seat, visitor);
+                }
+            }   
         }
 
         public int GetOccupiedSeatsAmount()
