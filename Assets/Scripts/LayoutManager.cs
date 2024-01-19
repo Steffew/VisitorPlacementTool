@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using VisitorPlacementTool.Core;
 using UnityEngine;
 
 public class LayoutManager : MonoBehaviour
@@ -30,6 +31,8 @@ public class LayoutManager : MonoBehaviour
     [Header("Miscellaneous")]
     [SerializeField] private bool randomizeRotation;
 
+    private VisitorPlacementTool.Core.Layout layout = new Layout();
+
     public void GenerateSections()
     {
         Transform transform = gameObject.transform;
@@ -40,6 +43,8 @@ public class LayoutManager : MonoBehaviour
             int rows = Random.Range(minRows, maxRows);
             int columns = Random.Range(minColumns, maxColumns);
             Section section = new Section(i + 1, rows, columns);
+
+            layout.AddSection(rows, columns);
             sections.Add(section);
         }
 
@@ -85,6 +90,7 @@ public class LayoutManager : MonoBehaviour
         }
 
         sections.Clear();
+        layout.ClearSections();
     }
 
     public void SetLayoutParameters(int sectionCount, int minColumns, int maxColumns, int minRows, int maxRows)
