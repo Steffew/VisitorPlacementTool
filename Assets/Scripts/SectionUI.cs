@@ -9,10 +9,9 @@ public class SectionUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sectionDimensionsText;
     private Section section;
 
-    public void SetSection(Section section)
+    public void SetText(string id, string rows, string columns)
     {
-        this.section = section;
-        sectionIdText.text = section.Id.ToString();
-        sectionDimensionsText.text = $"{section.Columns}x{section.Rows}";
+        sectionIdText.text = id;
+        sectionDimensionsText.text = $"{columns}x{rows}";
     }
 }

@@ -9,25 +9,25 @@ public class AssignManager : MonoBehaviour
 
     public void AssignGroup(Group group)
     {
-        foreach (Section section in layoutManager.GetSections())
-        {
-            if (CanGroupFit(group, section, singleRowAssignment: true))
-            {
-                var unoccupiedSeats = section.Seats.Where(seat => seat.Occupant == null).ToList();
-                int seatIndex = 0;
+        //foreach (Section section in layoutManager.GetSections())
+        //{
+        //    if (CanGroupFit(group, section, singleRowAssignment: true))
+        //    {
+        //        var unoccupiedSeats = section.Seats.Where(seat => seat.Occupant == null).ToList();
+        //        int seatIndex = 0;
 
-                foreach (Visitor visitor in group.Visitors)
-                {
-                    if (seatIndex < unoccupiedSeats.Count)
-                    {
-                        Seat seatToAssign = unoccupiedSeats[seatIndex];
-                        seatToAssign.SetOccupant(visitor);
-                        visitor.MoveTo(seatToAssign);
-                        seatIndex++;
-                    }
-                }
-            }
-        }
+        //        foreach (Visitor visitor in group.Visitors)
+        //        {
+        //            if (seatIndex < unoccupiedSeats.Count)
+        //            {
+        //                Seat seatToAssign = unoccupiedSeats[seatIndex];
+        //                seatToAssign.SetOccupant(visitor);
+        //                visitor.MoveTo(seatToAssign);
+        //                seatIndex++;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     public bool CanGroupFit(Group group, Section section, bool singleRowAssignment = false)

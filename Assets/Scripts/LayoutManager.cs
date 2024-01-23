@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class LayoutManager : MonoBehaviour
 {
-    private List<Section> sections = new List<Section>();
-
     [Header("Prefabs")]
     [SerializeField] private GameObject sectionPrefab;
 
@@ -45,14 +43,13 @@ public class LayoutManager : MonoBehaviour
             Section section = new Section(i + 1, rows, columns);
 
             layout.AddSection(rows, columns);
-            sections.Add(section);
         }
 
-        foreach (Section section in sections)
+        foreach (VisitorPlacementTool.Core.Section section in layout.Sections)
         {
             GameObject newSection = Instantiate(sectionPrefab, newSectionPosition, Quaternion.identity, transform);
             SectionUI sectionUI = newSection.GetComponent<SectionUI>();
-            sectionUI.SetSection(section);
+            sectionUI.SetText(section.Id.ToString(), section.Rows.ToString(), section.Columns.ToString());
 
             for (int c = 0; c < section.Columns; c++)
             {
@@ -62,7 +59,7 @@ public class LayoutManager : MonoBehaviour
                 {
                     GameObject rowSeat = Instantiate(seatPrefab, new Vector3(newSectionPosition.x, newSectionPosition.y, newSectionPosition.z - (r * 0.5f)), Quaternion.identity, newSection.transform);
 
-                    section.Seats.Add(rowSeat.GetComponent<Seat>());
+                    section.Seats.Add(new VisitorPlacementTool.Core.Seat(section.Seats.Count, r, c)); //todo: duplicate seats in section
 
                     rowSeat.GetComponent<Seat>().SetId(section.Seats.Count);
 
@@ -71,10 +68,10 @@ public class LayoutManager : MonoBehaviour
                         float randomYRotation = Random.Range(-10f, 10f);
                         rowSeat.transform.Rotate(0, randomYRotation, 0);
                     }
+
+                    Debug.Log($"Seat {section.Seats.Count} - {r+1}/{c+1}.");
                 }
             }
-
-            section.SetAvailableSeats(section.Seats);
 
             Debug.Log($"Section {section.Id} has {section.Seats.Count} seats.");
 
@@ -89,7 +86,6 @@ public class LayoutManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        sections.Clear();
         layout.ClearSections();
     }
 
@@ -107,8 +103,8 @@ public class LayoutManager : MonoBehaviour
         this.randomizeRotation = randomizeRotation;
     }
 
-    public List<Section> GetSections()
-    {
-        return sections;
-    }
+    //public List<Section> GetSections()
+    //{
+    //    return VisitorPlacementTool.Core.Layout;
+    //}
 }
