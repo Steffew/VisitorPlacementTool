@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisitorPlacementTool.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5887866f0cf9abde340c3c801afa599a738e0141")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac896c8e770599ea5af8512c0e078c2b082d6854")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisitorPlacementTool.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisitorPlacementTool.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
